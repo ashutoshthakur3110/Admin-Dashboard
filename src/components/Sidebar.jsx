@@ -22,7 +22,7 @@ const Sidebar = () => {
 
       <div className="mb-8 flex h-44 flex-col justify-end rounded-2xl bg-gray-100 p-5">
         <p className="mb-2 text-xs tracking-wide text-gray-500">
-          Monday, March 24
+          Friday, 09 October
         </p>
 
         <h2 className="text-2xl font-bold text-gray-900">
