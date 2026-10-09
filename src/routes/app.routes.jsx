@@ -5,6 +5,7 @@ import AdminDashboard from '../pages/Admin/AdminDashboard.jsx'
 import EmployeeDashboard from '../pages/Employee/EmployeeDashboard.jsx'
 import Login from '../pages/Auth/Login.jsx'
 import Register from '../pages/Auth/Register.jsx'
+import Form from '../pages/Admin/Form.jsx'
 
 
 export const routes = createBrowserRouter([{
@@ -34,5 +35,9 @@ export const routes = createBrowserRouter([{
             element: <Register/>
         }
     ]
+},
+{
+    path: "/addForm",
+    element: <Form/>
 }
 ])
