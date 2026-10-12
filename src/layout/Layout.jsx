@@ -1,11 +1,11 @@
-import {Outlet} from 'react-router'
+import { Outlet } from 'react-router'
 import Sidebar from '../components/Sidebar.jsx'
 
-const Layout = () =>{
-    return(
+const Layout = () => {
+    return (
         <div>
-            <Sidebar/>
-        <Outlet/>
+            <Sidebar />
+            <Outlet />
         </div>
     )
 }
