@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { UserPlus, User, Building2, IndianRupee, BriefcaseBusiness, Mail, Phone, CalendarDays } from 'lucide-react'
 
 const Form = () => {
-
   const inputStyle =
     'w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-black focus:bg-white focus:ring-2 focus:ring-gray-100'
 
