@@ -2,44 +2,6 @@ import React, { useState } from 'react'
 import { UserPlus, User, Building2, IndianRupee, BriefcaseBusiness, Mail, Phone, CalendarDays } from 'lucide-react'
 
 const Form = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    department: '',
-    salary: '',
-    experience: '',
-    joiningDate: '',
-    designation: ''
-  })
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    console.log('Employee Details:', formData)
-
-    alert('Employee added successfully!')
-
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      department: '',
-      salary: '',
-      experience: '',
-      joiningDate: '',
-      designation: ''
-    })
-  }
 
   const inputStyle =
     'w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-black focus:bg-white focus:ring-2 focus:ring-gray-100'
@@ -66,7 +28,6 @@ const Form = () => {
         </div>
 
         <form
-          onSubmit={handleSubmit}
           className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8"
         >
           <div className="mb-7 border-b border-gray-100 pb-5">
@@ -93,8 +54,6 @@ const Form = () => {
                   type="text"
                   name="name"
                   placeholder="Enter full name"
-                  value={formData.name}
-                  onChange={handleChange}
                   required
                 />
               </div>
@@ -108,8 +67,6 @@ const Form = () => {
                     type="email"
                     name="email"
                     placeholder="employee@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -124,8 +81,6 @@ const Form = () => {
                     type="tel"
                     name="phone"
                     placeholder="Enter phone number"
-                    value={formData.phone}
-                    onChange={handleChange}
                     pattern="[0-9]{10}"
                     maxLength={10}
                     required
@@ -141,8 +96,6 @@ const Form = () => {
                     className={`${inputStyle} pl-10`}
                     type="date"
                     name="joiningDate"
-                    value={formData.joiningDate}
-                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -165,17 +118,15 @@ const Form = () => {
                   <select
                     className={`${inputStyle} pl-10`}
                     name="department"
-                    value={formData.department}
-                    onChange={handleChange}
                     required
                   >
                     <option value="">Select department</option>
-                    <option value="Development">Development</option>
-                    <option value="HR">Human Resources</option>
-                    <option value="Design">Design</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Sales">Sales</option>
+                    <option>Development</option>
+                    <option>Human Resources</option>
+                    <option>Design</option>
+                    <option>Marketing</option>
+                    <option>Finance</option>
+                    <option>Sales</option>
                   </select>
                 </div>
               </div>
@@ -187,8 +138,6 @@ const Form = () => {
                   type="text"
                   name="designation"
                   placeholder="e.g. Software Developer"
-                  value={formData.designation}
-                  onChange={handleChange}
                   required
                 />
               </div>
@@ -203,8 +152,6 @@ const Form = () => {
                     name="salary"
                     placeholder="Enter monthly salary"
                     min="0"
-                    value={formData.salary}
-                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -220,8 +167,6 @@ const Form = () => {
                   min="0"
                   max="60"
                   step="0.5"
-                  value={formData.experience}
-                  onChange={handleChange}
                   required
                 />
               </div>
@@ -231,18 +176,6 @@ const Form = () => {
           <div className="flex flex-col-reverse gap-3 border-t border-gray-100 pt-6 sm:flex-row sm:justify-end">
             <button
               type="button"
-              onClick={() =>
-                setFormData({
-                  name: '',
-                  email: '',
-                  phone: '',
-                  department: '',
-                  salary: '',
-                  experience: '',
-                  joiningDate: '',
-                  designation: ''
-                })
-              }
               className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
             >
               Reset Form
