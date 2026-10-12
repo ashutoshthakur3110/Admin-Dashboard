@@ -1,7 +1,7 @@
 import React from 'react'
-import SalaryOverview from '../../components/Admin/SalaryOverview.jsx'
-import EmployeeData from '../../components/Admin/EmployeeData.jsx'
-import ShowData from '../../components/Admin/ShowData.jsx'
+import SalaryOverview from '../../components/AdminComponent/SalaryOverview.jsx'
+import EmployeeData from '../../components/AdminComponent/EmployeeData.jsx'
+import ShowData from '../../components/AdminComponent/ShowData.jsx'
 
 const AdminDashboard = () => {
   return (
