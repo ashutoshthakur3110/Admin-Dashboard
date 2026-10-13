@@ -84,7 +84,7 @@ const Register = () => {
           <div className="mb-4">
 
             <div>
-              <label className={labelStyle}>Full Name</label>
+              <label className={labelStyle}>Name</label>
               <input 
                 className={inputStyle} 
                 type="text" 
