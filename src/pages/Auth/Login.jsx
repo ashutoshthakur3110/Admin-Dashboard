@@ -139,7 +139,7 @@ const Login = () => {
           <div>
             <p className='text-sm font-bold text-gray-900 mt-6 text-center'>
               Didn't have an account??
-              <button type="button" className='ml-3 text-blue-600 underline' onClick={() => navigate('/signup')}>
+              <button type="button" className='ml-3 underline' onClick={() => navigate('/')}>
                 Sign Up
               </button>
             </p>
