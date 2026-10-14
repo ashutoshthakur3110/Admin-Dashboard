@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { UserPlus, User, Mail, Phone, LockKeyhole, Eye, EyeOff } from 'lucide-react'
+import { UserPlus, User, Mail, Phone, LockKeyhole, Eye, EyeOff, UserKey,BuildingComplex } from 'lucide-react'
 import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router'
 
@@ -14,6 +14,8 @@ const Register = () => {
       email: "",
       phone: "",
       password: "",
+      role:"",
+      company:"",
       passwordLength: ""
     })
 
@@ -25,10 +27,14 @@ const Register = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+      console.log(user.role)
+      console.log(user.company)
     let newError = {
       name: "",
       email: "",
       phone: "",
+      role:"",
+      company:"",
       password: "",
       passwordLength: ""
     }
@@ -60,6 +66,16 @@ const Register = () => {
       hasError = true
     }
 
+    if (!user.role || user.role.trim() === "") {
+      newError.role = "Role is required"
+      hasError = true
+    }
+
+    if (!user.company || user.company.trim() === "") {
+      newError.company = "Company Name is required"
+      hasError = true
+    }
+
     setError(newError)
     if (hasError) return
 
@@ -74,23 +90,23 @@ const Register = () => {
   }
 
   const inputStyle = 'w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-black focus:bg-white focus:ring-2 focus:ring-gray-100'
-  const labelStyle = 'mb-2 mt-5 block text-sm font-semibold text-gray-700'
+  const labelStyle = 'mb-2 mt-3 block text-sm font-semibold text-gray-700'
 
   return (
-    <div className="min-h-screen bg-gray-100 absolute right-1 top-1 px-30 py-10">
+    <div className="min-h-screen bg-gray-100 absolute right-1 top-1 px-30 py-6">
       <div className="w-full max-w-xl">
-        <div className="mb-8 px-9">
+        <div className="mb-3 px-9">
           <h1 className="text-2xl font-bold text-gray-900 text-center">
             Welcome to Admin Dashboard
           </h1>
         </div>
 
         <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-          <div className="mb-7 border-b border-gray-100 pb-5">
+          <div className="mb-3 border-b border-gray-100">
             <h2 className="text-lg font-bold text-gray-900"> Register Here </h2>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
 
             <select onChange={handleChange}
               className='w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-black focus:bg-white focus:ring-2 focus:ring-gray-100'
@@ -154,6 +170,42 @@ const Register = () => {
             </div>
 
             <div>
+              <label className={labelStyle}>Role</label>
+              <div className="relative">
+                <UserKey className="absolute left-3 top-3.5 text-gray-400" size={17} />
+                <input
+                  className={`${inputStyle} pl-10`}
+                  type="text"
+                  value={user.role || ''}
+                  onChange={(e) => {
+                    setUser({ ...user, role: e.target.value })
+                    setError({ ...error, role: "" })
+                  }}
+                  placeholder="Enter Role"
+                />
+              </div>
+              {error.role && <p className="text-red-500 text-sm mt-1">{error.role}</p>}
+            </div>
+
+            <div>
+              <label className={labelStyle}>Company Name</label>
+              <div className="relative">
+                <BuildingComplex className="absolute left-3 top-3.5 text-gray-400" size={17} />
+                <input
+                  className={`${inputStyle} pl-10`}
+                  type="text"
+                  value={user.company || ''}
+                  onChange={(e) => {
+                    setUser({ ...user, company: e.target.value })
+                    setError({ ...error, company: "" })
+                  }}
+                  placeholder="Enter Company Name"
+                />
+              </div>
+              {error.company && <p className="text-red-500 text-sm mt-1">{error.company}</p>}
+            </div>
+
+            <div>
               <label className={labelStyle}>Password</label>
               <div className="relative">
                 <LockKeyhole className="absolute left-3 top-3.5 text-gray-400" size={17} />
@@ -197,6 +249,7 @@ const Register = () => {
           </div>
         </form>
       </div>
+
     </div>
   )
 }

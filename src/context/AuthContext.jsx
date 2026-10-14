@@ -7,6 +7,8 @@ export const AuthProvider = ({ children }) => {
     name: "",
     email: "",
     password: "",
+    role:"",
+    company:"",
     phone: ""
   });
 
