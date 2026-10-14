@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext'
 const Login = () => {
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext)
-  const { user } = auth
+  const { user, workAs } = auth
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -51,7 +51,8 @@ const Login = () => {
 
     setError(newError)
     alert("Login successful")
-    navigate("/dashboard/employee")
+    if(workAs === 'admin') navigate("/dashboard/admin")
+    else navigate("/dashboard/employee")
   }
 
   const inputStyle = 'w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-black focus:bg-white focus:ring-2 focus:ring-gray-100'

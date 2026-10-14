@@ -6,16 +6,18 @@ import { useNavigate } from 'react-router'
 const Register = () => {
   const { auth } = useContext(AuthContext)
   const navigate = useNavigate()
-  
+
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(
-    { name: "",
+    {
+      name: "",
       email: "",
       phone: "",
       password: "",
-      passwordLength: "" })
-  
-  const { user, setUser } = auth
+      passwordLength: ""
+    })
+
+  const { user, setUser, workAs, setWorkAs } = auth
 
   function handlePassword() {
     setShowPassword(!showPassword)
@@ -24,11 +26,12 @@ const Register = () => {
   function handleSubmit(event) {
     event.preventDefault();
     let newError = {
-       name: "",
-       email: "",
-       phone: "",
-       password: "",
-       passwordLength: "" }
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+      passwordLength: ""
+    }
     let hasError = false
 
     if (!user.name || user.name.trim() === "") {
@@ -64,6 +67,12 @@ const Register = () => {
     navigate("/login")
   }
 
+  function handleChange(event){
+    event.preventDefault()
+    console.log(event.target.value)
+    setWorkAs(event.target.value)
+  }
+
   const inputStyle = 'w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-black focus:bg-white focus:ring-2 focus:ring-gray-100'
   const labelStyle = 'mb-2 mt-5 block text-sm font-semibold text-gray-700'
 
@@ -71,11 +80,11 @@ const Register = () => {
     <div className="min-h-screen bg-gray-100 absolute right-1 top-1 px-30 py-10">
       <div className="w-full max-w-xl">
         <div className="mb-8 px-9">
-          <h1 className="text-2xl font-bold text-gray-900 text-center"> 
-            Welcome to Admin Dashboard 
+          <h1 className="text-2xl font-bold text-gray-900 text-center">
+            Welcome to Admin Dashboard
           </h1>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
           <div className="mb-7 border-b border-gray-100 pb-5">
             <h2 className="text-lg font-bold text-gray-900"> Register Here </h2>
@@ -83,17 +92,26 @@ const Register = () => {
 
           <div className="mb-4">
 
+            <select onChange={handleChange}
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-black focus:bg-white focus:ring-2 focus:ring-gray-100'
+            >
+              <option>Register as</option>
+              <option value="admin">Admin</option>
+              <option value="employee">Employee</option>
+
+            </select>
+
             <div>
               <label className={labelStyle}>Name</label>
-              <input 
-                className={inputStyle} 
-                type="text" 
-                value={user.name || ''} 
+              <input
+                className={inputStyle}
+                type="text"
+                value={user.name || ''}
                 onChange={(e) => {
                   setUser({ ...user, name: e.target.value })
                   setError({ ...error, name: "" })
-                }} 
-                placeholder="Enter full name" 
+                }}
+                placeholder="Enter full name"
               />
               {error.name && <p className="text-red-500 text-sm mt-1">{error.name}</p>}
             </div>
@@ -103,15 +121,15 @@ const Register = () => {
               <label className={labelStyle}>Email Address</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3.5 text-gray-400" size={17} />
-                <input 
-                  className={`${inputStyle} pl-10`} 
-                  type="email" 
-                  value={user.email || ''} 
+                <input
+                  className={`${inputStyle} pl-10`}
+                  type="email"
+                  value={user.email || ''}
                   onChange={(e) => {
                     setUser({ ...user, email: e.target.value })
                     setError({ ...error, email: "" })
-                  }} 
-                  placeholder="employee@example.com" 
+                  }}
+                  placeholder="employee@example.com"
                 />
               </div>
               {error.email && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
@@ -121,15 +139,15 @@ const Register = () => {
               <label className={labelStyle}>Phone Number</label>
               <div className="relative">
                 <Phone className="absolute left-3 top-3.5 text-gray-400" size={17} />
-                <input 
-                  className={`${inputStyle} pl-10`} 
-                  type="tel" 
-                  value={user.phone || ''} 
+                <input
+                  className={`${inputStyle} pl-10`}
+                  type="tel"
+                  value={user.phone || ''}
                   onChange={(e) => {
                     setUser({ ...user, phone: e.target.value })
                     setError({ ...error, phone: "" })
-                  }} 
-                  placeholder="Enter phone number" 
+                  }}
+                  placeholder="Enter phone number"
                 />
               </div>
               {error.phone && <p className="text-red-500 text-sm mt-1">{error.phone}</p>}
@@ -139,19 +157,19 @@ const Register = () => {
               <label className={labelStyle}>Password</label>
               <div className="relative">
                 <LockKeyhole className="absolute left-3 top-3.5 text-gray-400" size={17} />
-                <input 
-                  className={`${inputStyle} pl-10 pr-12`} 
-                  type={showPassword ? "text" : "password"} 
-                  value={user.password || ''} 
+                <input
+                  className={`${inputStyle} pl-10 pr-12`}
+                  type={showPassword ? "text" : "password"}
+                  value={user.password || ''}
                   onChange={(e) => {
                     setUser({ ...user, password: e.target.value })
                     setError({ ...error, password: "", passwordLength: "" })
-                  }} 
-                  placeholder="Enter Password" 
+                  }}
+                  placeholder="Enter Password"
                 />
-                <button 
-                  type="button" 
-                  onClick={handlePassword} 
+                <button
+                  type="button"
+                  onClick={handlePassword}
                   className='absolute right-3 top-3.5 text-gray-400 hover:text-gray-600'
                 >
                   {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
@@ -163,15 +181,15 @@ const Register = () => {
           </div>
 
           <div className="pt-4 border-t border-gray-100 flex flex-col gap-4">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="flex items-center justify-center gap-2 rounded-xl bg-black px-6 py-3 text-sm font-semibold text-white w-full hover:bg-gray-800 transition"
             >
               <UserPlus size={18} /> Register
             </button>
-            
+
             <p className='text-sm font-medium text-gray-600 text-center'>
-              Already have an account? 
+              Already have an account?
               <button type="button" onClick={() => navigate('/login')} className='ml-1 font-bold text-black underline'>
                 Sign In
               </button>

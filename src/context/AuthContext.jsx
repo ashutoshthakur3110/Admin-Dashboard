@@ -7,10 +7,12 @@ export const AuthProvider = ({ children }) => {
     name: "",
     email: "",
     password: "",
-    phone: "",
+    phone: ""
   });
 
-  const auth = { user, setUser };
+  const[workAs, setWorkAs] = useState("employee")
+
+  const auth = { user, setUser, workAs, setWorkAs };
 
   return (
     <AuthContext.Provider value={{auth}}>
