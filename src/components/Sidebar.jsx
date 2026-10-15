@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import {useNavigate} from 'react-router'
 import { toast } from "react-toastify";
+import Switch from "./Switch";
 
 
 const Sidebar = () => {
@@ -27,6 +28,7 @@ const handleLogout = () =>{
   return (
     <aside className="w-72 min-h-screen bg-white p-5 font-roboto-mono">
       <div className="mb-8 px-2 text-sm font-bold tracking-wide text-gray-800">
+        <Switch/>
         Admin Dashboard
       </div>
 
