@@ -4,9 +4,19 @@ import {
   House,
   CalendarDays,
   CircleQuestionMark,
+  LogOut
 } from "lucide-react";
+import {useNavigate} from 'react-router'
+import { toast } from "react-toastify";
+
 
 const Sidebar = () => {
+  const navigate = useNavigate()
+  
+const handleLogout = () =>{
+  toast.success("Logout Successful")
+  navigate('/login')
+}
   const menuItems = [
     { name: "Home", icon: House },
     { name: "Dashboard", icon: LayoutGrid },
@@ -16,9 +26,9 @@ const Sidebar = () => {
 
   return (
     <aside className="w-72 min-h-screen bg-white p-5 font-roboto-mono">
-    <div className="mb-8 px-2 text-sm font-bold tracking-wide text-gray-800">
+      <div className="mb-8 px-2 text-sm font-bold tracking-wide text-gray-800">
         Admin Dashboard
-    </div>
+      </div>
 
       <div className="mb-8 flex h-44 flex-col justify-end rounded-2xl bg-gray-100 p-5">
         <p className="mb-2 text-xs tracking-wide text-gray-500">
@@ -35,7 +45,8 @@ const Sidebar = () => {
           const Icon = item.icon;
 
           return (
-            <button
+            <div>
+                          <button
               key={item.name}
               className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
                 item.name === "Home"
@@ -46,8 +57,10 @@ const Sidebar = () => {
               <Icon size={19} strokeWidth={1.8} />
               <span>{item.name}</span>
             </button>
+            </div>
           );
         })}
+        <button className="space-y-3 rounded-2xl bg-gray-100 p-4 flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 text-black hover:bg-red-600 hover:text-white" onClick={handleLogout}><LogOut />Logout</button>
       </nav>
     </aside>
   );

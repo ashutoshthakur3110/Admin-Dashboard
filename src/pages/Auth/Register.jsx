@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { UserPlus, User, Mail, Phone, LockKeyhole, Eye, EyeOff, UserKey,BuildingComplex } from 'lucide-react'
 import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
 
 const Register = () => {
   const { auth } = useContext(AuthContext)
@@ -79,7 +80,7 @@ const Register = () => {
     setError(newError)
     if (hasError) return
 
-    alert("Registration successful")
+    toast.success("Register Successful")
     navigate("/login")
   }
 

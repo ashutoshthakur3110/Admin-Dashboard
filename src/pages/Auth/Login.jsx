@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { UserPlus, Mail, LockKeyhole } from 'lucide-react'
 import { AuthContext } from '../../context/AuthContext'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const Login = () => {
     }
 
     setError(newError)
-    alert("Login successful")
+    toast.success("Login Successful")
     if(workAs === 'admin') navigate("/dashboard/admin")
     else navigate("/dashboard/employee")
   }
