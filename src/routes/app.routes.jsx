@@ -10,40 +10,41 @@ import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext.jsx'
 
 export const AppRoutes = () => {
-  const { workAs, user } = useContext(AuthContext)
-  console.log(workAs)
-  console.log(user)
+    const { auth } = useContext(AuthContext)
+    const { workAs, user } = auth
+    console.log(workAs)
+    console.log(user)
 
-  const routes = useRoutes([
-    {
-      path: '/dashboard',
-      element: user ? <Layout /> : <Navigate to="/login" replace />,
-      children: [
+    const routes = useRoutes([
         {
-          path: 'employee',
-          element: workAs === 'employee' ? <EmployeeDashboard /> : <Navigate to="/login" replace />
+            path: '/dashboard',
+            element: user ? <Layout /> : <Navigate to="/login" />,
+            children: [
+                {
+                    path: 'employee',
+                    element: workAs === 'employee' ? <EmployeeDashboard /> : <Navigate to="/login" />
+                },
+                {
+                    path: 'admin',
+                    element: workAs === 'admin' ? <AdminDashboard /> : <Navigate to="/login" />
+                }
+            ]
         },
+
         {
-          path: 'admin',
-          element: workAs === 'admin' ? <AdminDashboard /> : <Navigate to="/login" replace />
+            path: '/',
+            element: <AuthLayout />,
+            children: [
+                { path: 'login', element: <Login /> },
+                { path: '', element: <Register /> }
+            ]
+        },
+
+        {
+            path: '/addForm',
+            element: user && workAs === 'admin' ? <Form /> : <Navigate to="/login" />
         }
-      ]
-    },
+    ])
 
-    {
-      path: '/',
-      element: <AuthLayout />,
-      children: [
-        { path: 'login', element: <Login /> },
-        { path: '', element: <Register /> }
-      ]
-    },
-
-    { 
-      path: '/addForm', 
-      element: user && workAs === 'admin' ? <Form /> : <Navigate to="/login" replace /> 
-    }
-  ])
-
-  return routes
+    return routes
 }
